@@ -1,4 +1,7 @@
 
+using Application.Behaviour.Course;
+using Persistence;
+
 namespace WebApplication1
 {
     public class Program
@@ -12,6 +15,8 @@ namespace WebApplication1
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(CreateCourseCommand).Assembly));
+            builder.Services.AddPersistence();
 
             var app = builder.Build();
 
